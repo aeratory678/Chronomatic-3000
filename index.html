@@ -10,91 +10,85 @@
 </head>
 <body>
 
-    <div class="desk">
-        <div class="device">
+<div class="desk">
+  <div class="device">
 
-            <!--Win95-style title bar-->
-            <div class="titlebar">
-                <span class="titlebar-icon">▣</span>
-                <span class="titlebar-text">CHRONOMATIC 300.exe</span>
-                <span class="titlebar-buttons">
-                    <button class="win-raised tb-btn">_</button>
-                    <button class="win-raised tb-btn">□</button>
-                    <button class="win-raised tb-btn">X</button>
-            </div>
+    <div class="titlebar">
+      <span class="titlebar-icon">▣</span>
+      <span class="titlebar-text">CHRONOMATIC 300.exe</span>
+      <span class="titlebar-buttons">
+        <button class="win-raised tb-btn">_</button>
+        <button class="win-raised tb-btn">□</button>
+        <button class="win-raised tb-btn">X</button>
+      </span>
     </div>
-    
+
     <div class="device-body win-raised">
 
-        <div class="brand-row">
-            <span class="brand-text">CHRONOMATIC&nbsp;3000</span>
-            <span class="led" id="led" title="status light">
-            </span>
+      <div class="brand-row">
+        <span class="brand-text">CHRONOMATIC&nbsp;3000</span>
+        <span class="led" id="led" title="status light"></span>
+      </div>
+
+      <div class="main-row">
+        <button id="btnLeft" class="side-btn win-raised" aria-label="previous app">&#9664;</button>
+
+        <div class="screen-bezel win-sunken">
+          <div class="screen" id="screen">
+            <div class="scanlines" aria-hidden="true"></div>
+            <div class="glow" aria-hidden="true"></div>
+
+            <div class="view-wrap" id="viewWrap">
+
+              <section class="view active" data-view="clock" id="view-clock">
+                <div class="clock-time" id="clockTime">00:00:00</div>
+                <div class="clock-ampm" id="clockAmPm">AM</div>
+                <div class="clock-date" id="clockDate">--- --- --, ----</div>
+              </section>
+
+              <section class="view" data-view="calendar" id="view-calendar">
+                <div class="cal-header">
+                  <button id="calPrev" class="mini-btn win-raised" aria-label="Previous month">&#9666;</button>
+                  <span id="calMonthYear">MONTH YYYY</span>
+                  <button id="calNext" class="mini-btn win-raised" aria-label="Next month">&#9656;</button>
+                </div>
+                <div class="cal-grid" id="calGrid"></div>
+              </section>
+
+              <section class="view" data-view="stopwatch" id="view-stopwatch">
+                <div class="sw-time" id="swTime">00:00.00</div>
+                <div class="sw-buttons">
+                  <button id="swStartStop" class="mini-btn win-raised">START</button>
+                  <button id="swReset" class="mini-btn win-raised">RESET</button>
+                </div>
+              </section>
+
+              <section class="view" data-view="advent" id="view-advent">
+                <div class="advent-header">
+                  <span id="adventTitle">DAY <span id="adventDay">1</span> OF 25</span>
+                </div>
+                <div class="advent-grid" id="adventGrid"></div>
+                <div class="advent-reveal" id="adventReveal">Tap an unlocked door to reveal today's fact.</div>
+              </section>
+
+            </div>
+          </div>
+        </div>
+
+        <button id="btnRight" class="side-btn win-raised" aria-label="Next app">&#9654;</button>
+      </div>
+
+      <div class="indicator-row" id="indicatorRow">
+        <button class="dot active" data-mode="clock">CLOCK</button>
+        <button class="dot" data-mode="calendar">CAL</button>
+        <button class="dot" data-mode="stopwatch">TIMER</button>
+        <button class="dot" data-mode="advent">ADVENT</button>
+      </div>
+
     </div>
+  </div>
+</div>
 
-  <!-- < screen > control row -->  
-   <div class="main-row">
-    <button id="btnLeft" class="side-btn win-raised" aria-label="previous app">&#9664;</button>
-
-    <div class="screen-bezel win-sunken">
-        <div class="screen" id="screen">
-                <div class="scanlines" aria-hidden="true"></div>
-                <div class="glow" aria-hidden="true"></div>
-
-                <div class="view-wrap" id="viewWrap">
-
-                    <section class="view active" data-view="clock" id="view-clock">
-                        <div class="clock-time" id="clockTime">00:00:00</div>
-                        <div class="clock-ampm" id="clockAmPm">AM</div>
-                        <div class="clock-date" id="clockDate">--- --- --, ----</div>
-                    </section>
-
-                    <section class="view" data-view="calendar" id="view-calendar">
-                        <div class="cal-header">
-                            <button id="calPrev" class="mini-btn win-raised" aria-label="Previous month">&#9666;</button>
-                            <span id="calMonthYear">MONTH YYYY</span>
-                            <button id="calNext" class="mini-btn win-raised" aria-label="Next month">&#9656;</button>
-                        </div>
-                        <div class="cal-grid" id="calGrid"></div>
-                    </section>
-
-                    <section class="view" data-view="stopwatch" id="view-stopwatch">
-                        <div class="sw-time" id="swTime">00:00.00</div>
-                        <div class="sw-buttons">
-                            <button id="swStartStop" class="mini-btn win-raised">START</button>
-                            <button id="swReset" class="mini-btn win-raised">RESET</button>                           
-                        </div>
-                    </section>
-
-                    <section class="view" data-view="advent" id="view-advent">
-                        <div class="advent-header">
-                            <span id="adventTitle">DAY <span id="adventDay">1</span> OF 25</span>
-                        </div>
-                        <div class="advent-grid" id="adventGrid">
-                        </div>
-                                 <div class="advent-reveal" id="adventReveal">
-                                    Tap an unlocked door to reveal today's fact.</div>
-                                    </section>
-
-                                    </div>
-                                 </div>
-                              </div>
-
-                              <button id="btnRight" class="side-btn win-raised" aria-label="Next app">&#9654;</button>
-                              </div>
-
-                              <div class="indicator-row" id="indicatorRow">
-                                <button class="dot active" data-mode="clock">CLOCK</button>
-                                <button class="dot" data-mode="calendar">CAL</button>
-                                <button class="dot" data-mode="stopwatch">TIMER</button>
-                                <button class="dot" data-mode="advent">ADVENT</button>
-                              </div>
-
-                              </div>
-                              </div>
-
-                              <p class="hint">Use the side arrows (or ← →) to switch apps.</p>
-                            </div>
-                            <script src="dog.js"></script>
-                            </body>
-                            </html>
+<script src="dog.js"></script>
+</body>
+</html>
