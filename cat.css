@@ -1,4 +1,3 @@
-/* ============ tokens ============ */
 :root{
   --chrome:      #c0c0c0;
   --chrome-hi:   #ffffff;
@@ -18,21 +17,26 @@
 
 *{ box-sizing: border-box; }
 
+html, body{ height: 100%; }
+
 body{
-   margin: 0;
-   min-height: 100vh;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   background:
-   repeating-linear-gradient(45deg, #9a9a9a 0 2px, #8f8f8f 2px 4px);
-   font-family: var(--font-term);
-   padding: 24px;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: repeating-linear-gradient(45deg, #9a9a9a 0 2px, #8f8f8f 2px 4px);
+  font-family: var(--font-term);
+  padding: 24px;
 }
 
-.desk{display:flex; flex-direction:column; align-items:center;gap:14px; }
+.desk{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
 
-/* ============ win95 bevels ============ */
 .win-raised{
   background: var(--chrome);
   border-top: 2px solid var(--chrome-hi);
@@ -56,27 +60,35 @@ body{
   border-bottom: 2px solid var(--chrome-hi);
 }
 
-/* ============ device shell (if any body reading in hackclub,yo) ============ */
-.device{ width: 420px; max-width: 92vw; }
+.device{
+  width: min(420px, 92vw);
+}
 
 .titlebar{
-  display:flex; align-items:center; gap:6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   background: linear-gradient(90deg, var(--navy), var(--navy-lite));
-  color:#fff;
+  color: #fff;
   font-family: var(--font-pixel);
-  font-size: 10px;
+  font-size: clamp(8px, 2.2vw, 10px);
   padding: 5px 6px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
-.titlebar-icon{ font-size:11px; }
-.titlebar-text{ flex:1; letter-spacing:0.5px; }
-.titlebar-buttons{ display:flex; gap:3px; }
+.titlebar-icon{ font-size: 1.1em; }
+.titlebar-text{ flex: 1; letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.titlebar-buttons{ display: flex; gap: 3px; flex-shrink: 0; }
 .tb-btn{
-  width:16px; height:16px;
-  display:flex; align-items:center; justify-content:center;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--font-pixel);
-  font-size:8px; color:#000; cursor:default;
+  font-size: 8px;
+  color: #000;
+  cursor: default;
 }
 
 .device-body{
@@ -85,42 +97,47 @@ body{
 }
 
 .brand-row{
-  display:flex; align-items:center; justify-content:space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 10px;
   padding: 0 2px;
 }
 .brand-text{
   font-family: var(--font-pixel);
-  font-size: 11px;
+  font-size: clamp(9px, 2.6vw, 11px);
   color: #333;
   letter-spacing: 1px;
 }
 .led{
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: var(--phosphor);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--phosphor);
   box-shadow: 0 0 6px 2px var(--phosphor), inset 0 0 2px #000;
-  transition: background .2s, box-shadow .2s;  
+  transition: background .2s, box-shadow .2s;
+  flex-shrink: 0;
 }
 
-/* ============ < screen > row ============ */
 .main-row{
-    display:flex;
-    align-items:center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .side-btn{
   flex: 0 0 auto;
-  width: 42px; height: 64px;
-  font-size: 18px;
-  color:#222;
-  cursor:pointer;
+  width: clamp(32px, 9vw, 42px);
+  height: clamp(52px, 15vw, 64px);
+  font-size: clamp(14px, 4vw, 18px);
+  color: #222;
+  cursor: pointer;
   border-radius: 4px;
 }
 .side-btn:hover{ filter: brightness(1.05); }
 
 .screen-bezel{
-  flex:1;
+  flex: 1;
+  min-width: 0;
   padding: 8px;
   border-radius: 6px;
 }
@@ -130,13 +147,14 @@ body{
   background: var(--screen-bg);
   border-radius: 3px;
   overflow: hidden;
-  height: 190px;
+  aspect-ratio: 3 / 2;
   box-shadow: inset 0 0 18px rgba(0,0,0,0.85);
 }
 
 .scanlines{
-  position:absolute; inset:0;
-  pointer-events:none;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
   background: repeating-linear-gradient(
     to bottom,
     rgba(0,0,0,0) 0px,
@@ -147,79 +165,85 @@ body{
   z-index: 3;
 }
 .glow{
-  position:absolute; inset:0;
-  pointer-events:none;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
   background: radial-gradient(ellipse at center, rgba(57,255,20,0.06), rgba(0,0,0,0.35) 80%);
   z-index: 2;
 }
 
-.view-wrap{ position:relative; width:100%; height:100%; }
+.view-wrap{ position: relative; width: 100%; height: 100%; }
 
 .view{
-  position:absolute; inset:0;
-  display:none;
+  position: absolute;
+  inset: 0;
+  display: none;
   flex-direction: column;
-  align-items:center;
-  justify-content:center;
+  align-items: center;
+  justify-content: center;
   color: var(--phosphor);
   text-shadow: 0 0 5px var(--phosphor), 0 0 1px var(--phosphor);
   font-family: var(--font-term);
-  padding: 10px 12px;
-  text-align:center;
+  padding: 8% 8%;
+  text-align: center;
 }
-.view.active{ display:flex; }
+.view.active{ display: flex; }
 
 .clock-time{
-  font-size: 46px;
+  font-size: clamp(26px, 11vw, 46px);
   letter-spacing: 2px;
   line-height: 1;
 }
 .clock-ampm{
-  font-size: 16px;
+  font-size: clamp(11px, 4vw, 16px);
   margin-top: 2px;
   color: var(--amber);
   text-shadow: 0 0 5px var(--amber);
 }
 .clock-date{
   margin-top: 10px;
-  font-size: 20px;
+  font-size: clamp(13px, 5vw, 20px);
   letter-spacing: 1px;
 }
 
-/* ---- calendar ---- */
-#view-calendar{ justify-content:flex-start; padding-top: 8px; }
+#view-calendar{ justify-content: flex-start; padding-top: 6%; }
 .cal-header{
-  display:flex; align-items:center; justify-content:center; gap:10px;
-  font-size: 20px;
-  width:100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: clamp(13px, 5vw, 20px);
+  width: 100%;
   margin-bottom: 6px;
 }
 .mini-btn{
   font-family: var(--font-term);
-  font-size: 16px;
+  font-size: clamp(12px, 4vw, 16px);
   padding: 2px 8px;
-  cursor:pointer;
-  color:#111;
-  border-radius:3px;
+  cursor: pointer;
+  color: #111;
+  border-radius: 3px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .cal-grid{
-  display:grid;
+  display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 2px;
   width: 100%;
-  font-size: 15px;
+  font-size: clamp(11px, 3.8vw, 15px);
 }
 .cal-dow{
   color: var(--amber);
   text-shadow: 0 0 4px var(--amber);
-  font-size: 13px;
+  font-size: 0.85em;
   padding-bottom: 2px;
 }
 .cal-day{
   padding: 3px 0;
   border-radius: 2px;
 }
-.cal-day.blank{ visibility:hidden; }
+.cal-day.blank{ visibility: hidden; }
 .cal-day.today{
   background: var(--phosphor-dim);
   color: #eaffea;
@@ -227,28 +251,34 @@ body{
   box-shadow: 0 0 6px var(--phosphor);
 }
 
-/* ---- stopwatch ---- */
 .sw-time{
-  font-size: 40px;
+  font-size: clamp(22px, 9vw, 40px);
   letter-spacing: 1px;
 }
 .sw-buttons{
-  display:flex; gap: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-top: 14px;
+  width: 100%;
 }
-.sw-buttons .mini-btn{ font-size: 13px; padding: 6px 14px; font-family: var(--font-pixel); }
+.sw-buttons .mini-btn{
+  font-size: clamp(8px, 2.6vw, 13px);
+  padding: clamp(4px, 1.6vw, 6px) clamp(8px, 3vw, 14px);
+  font-family: var(--font-pixel);
+}
 
-/* ---- advent ---- */
-#view-advent{ justify-content:flex-start; padding-top:6px; }
+#view-advent{ justify-content: flex-start; padding-top: 4%; }
 .advent-header{
   font-family: var(--font-pixel);
-  font-size: 10px;
+  font-size: clamp(8px, 2.6vw, 10px);
   color: var(--amber);
   text-shadow: 0 0 5px var(--amber);
   margin-bottom: 6px;
 }
 .advent-grid{
-  display:grid;
+  display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 3px;
   width: 100%;
@@ -256,20 +286,22 @@ body{
 .door{
   aspect-ratio: 1;
   font-family: var(--font-term);
-  font-size: 15px;
-  display:flex; align-items:center; justify-content:center;
-  cursor:pointer;
+  font-size: clamp(11px, 3.8vw, 15px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
   border-radius: 2px;
   border: 1px solid var(--phosphor-dim);
   background: rgba(57,255,20,0.05);
   color: var(--phosphor);
 }
 .door.locked{
-  cursor:not-allowed;
+  cursor: not-allowed;
   color: #2a2a2a;
   border-color: #1a1a1a;
   background: rgba(255,255,255,0.02);
-  text-shadow:none;
+  text-shadow: none;
 }
 .door.opened{
   background: rgba(255,176,0,0.12);
@@ -279,22 +311,22 @@ body{
 }
 .advent-reveal{
   margin-top: 8px;
-  font-size: 14px;
+  font-size: clamp(10px, 3.6vw, 14px);
   min-height: 34px;
   line-height: 1.25;
   color: #eaffea;
 }
 
-/* ============ indicator dots ============ */
 .indicator-row{
-    display:flex;
-    justify-content:center;
-    gap: 6px;
-    margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
 }
 .dot{
   font-family: var(--font-pixel);
-  font-size: 7px;
+  font-size: clamp(6px, 1.8vw, 7px);
   padding: 5px 7px;
   background: var(--chrome-lo2);
   color: #999;
@@ -302,21 +334,10 @@ body{
   border-radius: 2px;
   cursor: pointer;
   letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 .dot.active{
   background: var(--phosphor-dim);
   color: var(--phosphor);
   box-shadow: 0 0 5px var(--phosphor);
-}
-
-.hint{
-  font-family: var(--font-term);
-  font-size: 14px;
-  color: #444;
-}
-
-@media (max-width: 460px){
-  .clock-time{ font-size: 34px; }
-  .sw-time{ font-size: 30px; }
-  .side-btn{ width: 34px; height: 54px; font-size:15px; }
 }
