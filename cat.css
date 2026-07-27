@@ -189,6 +189,12 @@ body{
 }
 .view.active{ display: flex; }
 
+#view-calendar.active,
+#view-advent.active{
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
 .clock-time{
   font-size: clamp(26px, 11vw, 46px);
   letter-spacing: 2px;
@@ -206,15 +212,16 @@ body{
   letter-spacing: 1px;
 }
 
-#view-calendar{ justify-content: flex-start; padding-top: 6%; }
+#view-calendar{ padding-top: 6%; height: 100%; }
 .cal-header{
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-size: clamp(13px, 5vw, 20px);
+  font-size: clamp(12px, 4.5vw, 18px);
   width: 100%;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
+  flex: 0 0 auto;
 }
 .mini-btn{
   font-family: var(--font-term);
@@ -229,18 +236,25 @@ body{
 .cal-grid{
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: 1fr;
   gap: 2px;
   width: 100%;
-  font-size: clamp(11px, 3.8vw, 15px);
+  flex: 1;
+  min-height: 0;
+  font-size: clamp(9px, 3.2vw, 14px);
 }
 .cal-dow{
   color: var(--amber);
   text-shadow: 0 0 4px var(--amber);
   font-size: 0.85em;
-  padding-bottom: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .cal-day{
-  padding: 3px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 2px;
 }
 .cal-day.blank{ visibility: hidden; }
@@ -269,24 +283,27 @@ body{
   font-family: var(--font-pixel);
 }
 
-#view-advent{ justify-content: flex-start; padding-top: 4%; }
+#view-advent{ padding-top: 4%; height: 100%; }
 .advent-header{
   font-family: var(--font-pixel);
   font-size: clamp(8px, 2.6vw, 10px);
   color: var(--amber);
   text-shadow: 0 0 5px var(--amber);
   margin-bottom: 6px;
+  flex: 0 0 auto;
 }
 .advent-grid{
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
   gap: 3px;
   width: 100%;
+  flex: 1;
+  min-height: 0;
 }
 .door{
-  aspect-ratio: 1;
   font-family: var(--font-term);
-  font-size: clamp(11px, 3.8vw, 15px);
+  font-size: clamp(9px, 3.4vw, 15px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -310,11 +327,14 @@ body{
   text-shadow: 0 0 5px var(--amber);
 }
 .advent-reveal{
-  margin-top: 8px;
-  font-size: clamp(10px, 3.6vw, 14px);
-  min-height: 34px;
+  margin-top: 6px;
+  font-size: clamp(8px, 2.8vw, 12px);
+  min-height: 0;
+  max-height: 2.6em;
+  overflow: hidden;
   line-height: 1.25;
   color: #eaffea;
+  flex: 0 0 auto;
 }
 
 .indicator-row{
