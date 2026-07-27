@@ -1,10 +1,5 @@
-/* =========================================================
-   CHRONOMATIC 3000 — retro multi-tool device
-   ========================================================= */
-
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ---------- mode switching ---------- */
   const modes = ['clock', 'calendar', 'stopwatch', 'advent'];
   let modeIndex = 0;
 
@@ -42,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   showMode(0);
 
-  /* ---------- CLOCK ---------- */
   const clockTimeEl  = document.getElementById('clockTime');
   const clockAmPmEl  = document.getElementById('clockAmPm');
   const clockDateEl  = document.getElementById('clockDate');
@@ -66,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
   updateClock();
   setInterval(updateClock, 1000);
 
-  /* ---------- CALENDAR ---------- */
   const calMonthYearEl = document.getElementById('calMonthYear');
   const calGridEl = document.getElementById('calGrid');
   const realToday = new Date();
@@ -119,13 +112,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   renderCalendar();
 
-  /* ---------- STOPWATCH ---------- */
   const swTimeEl = document.getElementById('swTime');
   const swStartStopBtn = document.getElementById('swStartStop');
   const swResetBtn = document.getElementById('swReset');
 
   let swRunning = false;
-  let swElapsed = 0;      // ms accumulated
+  let swElapsed = 0;
   let swStartedAt = 0;
   let swInterval = null;
 
@@ -165,8 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
     swStartStopBtn.textContent = 'START';
   });
 
-  /* ---------- ADVENT CALENDAR ---------- */
-  // 25 original fun facts — door N unlocks when N <= today's day-of-month (capped at 25)
   const adventFacts = [
     "Honey found in ancient tombs is still edible today — it basically never spoils.",
     "Octopuses have three hearts, and two of them stop beating when they swim.",
@@ -206,12 +196,12 @@ document.addEventListener('DOMContentLoaded', () => {
   try {
     const saved = localStorage.getItem('chronomatic-advent-opened');
     if (saved) openedDoors = new Set(JSON.parse(saved));
-  } catch (err) { /* localStorage unavailable — proceed without persistence */ }
+  } catch (err) {}
 
   function saveOpened() {
     try {
       localStorage.setItem('chronomatic-advent-opened', JSON.stringify([...openedDoors]));
-    } catch (err) { /* ignore */ }
+    } catch (err) {}
   }
 
   function renderAdvent() {
